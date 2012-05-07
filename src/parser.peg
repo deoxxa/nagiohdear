@@ -1,0 +1,18 @@
+start = blocks:(define_block [ \t\r\n]*)* {
+  return blocks.map(function(b) { return b[0]; });
+}
+
+define_block = "define" [ \t]+ name:([a-zA-Z0-9_]+) [ \t]+ "{" [ \t\r\n]* lines:([ \t]* define_block_line [\r\n]+)* [ \t\r\n]* "}" {
+  return {
+    name: name.join("").trim(),
+    lines: lines.map(function(l) { return l[1]; }),
+  };
+}
+
+define_block_line = name:([a-zA-Z0-9_]+) [ \t]+ value:([^;\r\n]+) comment:([ \t]* ";" [^\r\n]+)? {
+  return {
+    name: name.join("").trim(),
+    value: value.join("").trim(),
+    comment: comment ? comment[2].join("").trim() : null,
+  };
+}

@@ -1,0 +1,36 @@
+{
+  "name": "nagiohdear",
+  "description": "Nagios config file parser and generator",
+  "version": "0.0.0",
+  "author": {
+    "name": "Conrad Pankoff",
+    "email": "deoxxa@fknsrs.biz",
+    "url": "http://www.fknsrs.biz/"
+  },
+  "url": "http://github.com/deoxxa/nagiohdear",
+  "license" : "BSD",
+  "repository" : { "type":"git", "url":"git://github.com/deoxxa/nagiohdear.git" },
+  "keywords" : [
+    "nagiohdear",
+    "nagios",
+    "config",
+    "parser",
+    "generator"
+  ],
+  "main": "./index.js",
+  "engines": {
+    "node" : ">=0.4.1"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "pegjs": "0.7.x",
+    "vows": "",
+    "docco": ">=0.3.0"
+  },
+  "scripts": {
+    "pegjs": "./node_modules/pegjs/bin/pegjs src/parser.peg lib/parser.js",
+    "test": "./node_modules/vows/bin/vows --spec",
+    "docs": "./node_modules/docco/bin/docco index.js lib/generator.js"
+  }
+}
