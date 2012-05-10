@@ -10,8 +10,14 @@ vows.describe("Parser")
         assert.equal(JSON.stringify(nagiohdear.parser.parse(config)), JSON.stringify([{name: "x", lines: [{name: "y", value: "z", comment: null}]}]));
       },
     },
-    "A single define block with one define line with a comment": {
+    "A single define block with one define line with a ; comment": {
       topic: "define x {\n  y z ; a\n}",
+      "should return the correct object": function(config) {
+        assert.equal(JSON.stringify(nagiohdear.parser.parse(config)), JSON.stringify([{name: "x", lines: [{name: "y", value: "z", comment: "a"}]}]));
+      },
+    },
+    "A single define block with one define line with a # comment": {
+      topic: "define x {\n  y z # a\n}",
       "should return the correct object": function(config) {
         assert.equal(JSON.stringify(nagiohdear.parser.parse(config)), JSON.stringify([{name: "x", lines: [{name: "y", value: "z", comment: "a"}]}]));
       },

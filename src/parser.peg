@@ -9,7 +9,7 @@ define_block = "define" [ \t]+ name:([a-zA-Z0-9_]+) [ \t]+ "{" [ \t\r\n]* lines:
   };
 }
 
-define_block_line = name:([a-zA-Z0-9_]+) [ \t]+ value:([^;\r\n]+) comment:([ \t]* ";" [^\r\n]+)? {
+define_block_line = name:([a-zA-Z0-9_]+) [ \t]+ value:([^;#\r\n]+) comment:([ \t]* [;#] [^\r\n]+)? {
   return {
     name: name.join("").trim(),
     value: value.join("").trim(),
